@@ -1,0 +1,32 @@
+version: '3.3'
+
+networks: 
+    Networking-DemoServices:
+
+services:
+  demo-service1:
+    hostname: Demo_Service1
+    container_name: Demo_Service1
+    build: ./Service1
+    #ports:
+    # - "3000:3000"
+    networks: 
+     - Networking-DemoServices 
+  
+  demo-service2:
+    hostname: Demo_Service2
+    container_name: Demo_Service2
+    build: ./Service2
+    #ports: 
+    #  - "3001:3000"
+    networks: 
+      - Networking-DemoServices     
+  nginx-demoservice-balancer:
+    build: ./Balancer
+    ports:
+      - "8080:80"
+    depends_on:
+      - demo-service1
+      - demo-service2
+    networks: 
+      - Networking-DemoServices  
