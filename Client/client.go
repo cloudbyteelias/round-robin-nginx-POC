@@ -32,6 +32,6 @@ func SendRequest() string {
 		fmt.Printf("Request error status code is [%v]", response.StatusCode)
 	}
 
-	return "🔥request eniado com sucesso🔥"
+	return "🔥order sent successfully🔥"
 
 }
